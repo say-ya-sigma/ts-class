@@ -153,14 +153,19 @@ code {
   color: #a5d6ff;
 }
 
-/* Variables, params - orange */
+/* Variables, params - bright yellow for high contrast */
 .hljs-variable,
 .hljs-template-variable,
 .hljs-selector-id,
 .hljs-selector-class,
 .hljs-regexp,
 .hljs-deletion {
-  color: #ffaa5c;
+  color: #ffd700;
+}
+
+/* Template literal substitutions like ${name} */
+.hljs-subst {
+  color: #ffd700;
 }
 
 /* Functions, methods - purple */
