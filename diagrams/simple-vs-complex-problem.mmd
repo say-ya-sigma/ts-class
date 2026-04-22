@@ -1,0 +1,27 @@
+flowchart TB
+    subgraph UserCard["UserCardコンポーネント"]
+        subgraph Question["これは simple か complex か？"]
+            Avatar["Avatar"]
+            Name["Name"]
+            Role["Role"]
+            Actions["Actions"]
+        end
+    end
+    
+    subgraph Confusion["分類の曖昧さ"]
+        Molecules["molecules/<br/>'relatively simple'"]
+        Organisms["organisms/<br/>'complex'"]
+    end
+    
+    Question -.->|?| Molecules
+    Question -.->|?| Organisms
+    
+    style UserCard fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    style Question fill:#ffe0b2,stroke:#ff9800
+    style Avatar fill:#e3f2fd,stroke:#2196f3
+    style Name fill:#e3f2fd,stroke:#2196f3
+    style Role fill:#e3f2fd,stroke:#2196f3
+    style Actions fill:#e3f2fd,stroke:#2196f3
+    style Confusion fill:#ffebee,stroke:#f44336,stroke-width:2px
+    style Molecules fill:#ffcdd2,stroke:#f44336
+    style Organisms fill:#ffcdd2,stroke:#f44336

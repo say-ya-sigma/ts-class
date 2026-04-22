@@ -1,0 +1,394 @@
+/* @theme ts-marp-modern */
+
+@import 'default';
+
+/* ============================================
+   TypeScript Fullstack Architecture Theme
+   Modern & Professional Design
+   ============================================ */
+
+:root {
+  /* Color Palette - Dark Modern */
+  --color-bg: #0d1117;
+  --color-bg-secondary: #161b22;
+  --color-bg-tertiary: #21262d;
+  --color-text: #e6edf3;
+  --color-text-secondary: #b0b8c4;
+  --color-accent: #58a6ff;
+  --color-accent-secondary: #238636;
+  --color-border: #30363d;
+  --color-code-bg: #161b22;
+  
+  /* Gradients */
+  --gradient-header: linear-gradient(135deg, #1f6feb 0%, #58a6ff 100%);
+  --gradient-slide: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+section {
+  background: var(--gradient-slide);
+  color: var(--color-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 28px;
+  line-height: 1.6;
+  padding: 60px 80px;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1 {
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0 0 30px 0;
+  padding-bottom: 20px;
+  border-bottom: 4px solid var(--color-accent);
+  background: var(--gradient-header);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin: 40px 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-border);
+}
+
+h3 {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin: 30px 0 15px 0;
+}
+
+/* ============================================
+   Lists
+   ============================================ */
+
+ul, ol {
+  margin: 20px 0;
+  padding-left: 40px;
+}
+
+li {
+  margin: 12px 0;
+}
+
+li::marker {
+  color: var(--color-accent);
+}
+
+/* ============================================
+    Code Blocks
+    ============================================ */
+
+pre {
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, monospace;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+:not(pre) > code {
+  background: var(--color-bg-tertiary);
+  color: var(--color-accent);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 22px;
+}
+
+/* ============================================
+    Syntax Highlighting Override - High Contrast
+    ============================================ */
+
+/* Base code text color */
+.hljs {
+  color: var(--color-text);
+  background: transparent;
+}
+
+/* Comments - make brighter */
+.hljs-comment,
+.hljs-quote {
+  color: #b0b8c4;
+  font-style: italic;
+}
+
+/* Keywords - brighter red */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-section,
+.hljs-link {
+  color: #ff9494;
+}
+
+/* Strings - brighter cyan */
+.hljs-string,
+.hljs-title,
+.hljs-name,
+.hljs-type,
+.hljs-attribute,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #a5d6ff;
+}
+
+/* Variables, params - orange */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #ffaa5c;
+}
+
+/* Functions, methods - purple */
+.hljs-function .hljs-title,
+.hljs-class .hljs-title,
+.hljs-title.class_ {
+  color: #d2a8ff;
+}
+
+/* Built-ins, tags - green */
+.hljs-built_in,
+.hljs-tag,
+.hljs-tag .hljs-title {
+  color: #7ee787;
+}
+
+/* Numbers, constants - blue */
+.hljs-number,
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-literal {
+  color: #79c0ff;
+}
+
+/* Operators - light gray */
+.hljs-operator,
+.hljs-punctuation {
+  color: #c9d1d9;
+}
+
+/* Property names - light yellow */
+.hljs-property {
+  color: #f2cc60;
+}
+
+/* ============================================
+   Tables
+   ============================================ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 24px;
+}
+
+th {
+  background: var(--color-bg-tertiary);
+  color: var(--color-accent);
+  font-weight: 600;
+  padding: 16px 20px;
+  border-bottom: 2px solid var(--color-accent);
+  text-align: left;
+}
+
+section table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text) !important;
+}
+
+section table tr {
+  background: var(--color-bg) !important;
+}
+
+section table tr:hover {
+  background: var(--color-bg-tertiary) !important;
+}
+
+/* ============================================
+   Blockquotes
+   ============================================ */
+
+blockquote {
+  background: var(--color-bg-secondary);
+  border-left: 5px solid var(--color-accent);
+  padding: 20px 30px;
+  margin: 24px 0;
+  border-radius: 0 12px 12px 0;
+  font-style: italic;
+  color: var(--color-text);
+}
+
+/* ============================================
+   Links
+   ============================================ */
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+
+a:hover {
+  border-bottom-color: var(--color-accent);
+}
+
+/* ============================================
+   Images
+   ============================================ */
+
+img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Special Slide Types
+   ============================================ */
+
+/* Title Slide */
+section.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #0d1117 0%, #1f6feb 50%, #0d1117 100%);
+}
+
+section.title h1 {
+  font-size: 72px;
+  border: none;
+  background: linear-gradient(135deg, #fff 0%, #58a6ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+section.title h2 {
+  border: none;
+  color: var(--color-text);
+  font-weight: 400;
+}
+
+/* Section Header Slide */
+section.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: var(--color-bg-secondary);
+}
+
+section.section h1 {
+  font-size: 64px;
+  border: none;
+  background: var(--color-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   Pagination & Footer
+   ============================================ */
+
+section::after {
+  content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  font-size: 16px;
+  color: var(--color-text-secondary);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.bg-accent {
+  background: var(--color-bg-tertiary);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+/* Grid layout helper */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+
+/* ============================================
+   Strong & Emphasis
+   ============================================ */
+
+strong {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+em {
+  color: var(--color-text);
+}
+
+/* ============================================
+   Horizontal Rule
+   ============================================ */
+
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  margin: 30px 0;
+}

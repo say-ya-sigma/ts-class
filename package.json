@@ -1,0 +1,22 @@
+{
+  "name": "ts-marp-slides",
+  "version": "1.0.0",
+  "description": "Marp presentation slides for TypeScript fullstack architecture",
+  "scripts": {
+    "build": "npx @marp-team/marp-cli --config marp.config.js",
+    "build:frontend": "npx @marp-team/marp-cli slides/frontend --config marp.config.js",
+    "build:backend": "npx @marp-team/marp-cli slides/backend --config marp.config.js",
+    "build:pdf": "npx @marp-team/marp-cli --config marp.config.js --pdf",
+    "build:pdf:frontend": "npx @marp-team/marp-cli slides/frontend --config marp.config.js --pdf",
+    "build:pdf:backend": "npx @marp-team/marp-cli slides/backend --config marp.config.js --pdf",
+    "preview": "npx @marp-team/marp-cli --config marp.config.js -w -s",
+    "clean": "rm -rf dist",
+    "diagrams": "node diagrams/server.js"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.2.3"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
