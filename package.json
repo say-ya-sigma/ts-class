@@ -6,6 +6,7 @@
     "build": "npx @marp-team/marp-cli --config marp.config.js",
     "build:frontend": "npx @marp-team/marp-cli slides/frontend --config marp.config.js",
     "build:backend": "npx @marp-team/marp-cli slides/backend --config marp.config.js",
+    "build:nodejs": "npx @marp-team/marp-cli slides/nodejs/x1-execution-model.md --no-config --theme ./slides/themes/modern.css -o ./dist/nodejs/x1-execution-model.html",
     "build:pdf": "npx @marp-team/marp-cli --config marp.config.js --pdf",
     "build:pdf:frontend": "npx @marp-team/marp-cli slides/frontend --config marp.config.js --pdf",
     "build:pdf:backend": "npx @marp-team/marp-cli slides/backend --config marp.config.js --pdf",
