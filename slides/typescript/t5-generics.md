@@ -43,6 +43,8 @@ function firstUser(arr: User[]): User | undefined {
 // 同じロジックなのに型のためにコピペ...！
 ```
 
+---
+
 ### 型だけ違う、同じ関数が大量にある
 
 ```typescript
@@ -80,6 +82,8 @@ greet("Alice");  // "Hello, Alice"
 greet(123);      // ❌ エラー
 ```
 
+---
+
 ```typescript
 // Generic関数: 型をパラメータにする
 function first<T>(arr: T[]): T | undefined {
@@ -93,6 +97,8 @@ first<string>(["a", "b", "c"]);   // T = string
 first<number>([1, 2, 3]);         // T = number
 first<User>([user1, user2]);      // T = User
 ```
+
+---
 
 ### すでに使っている: Array<string> / Promise<User>
 
@@ -129,6 +135,8 @@ const user = identity<User>({ name: "Alice" });  // User型
 // <T>が同じ型を指す
 ```
 
+---
+
 ### 型推論との組み合わせ
 
 ```typescript
@@ -163,6 +171,8 @@ const firstNum = first(numbers);  // number | undefined
 // 同じ関数で複数の型に対応！
 ```
 
+---
+
 ### function pick<T, K extends keyof T>(obj: T, keys: K[]): Pick<T, K>
 
 ```typescript
@@ -174,7 +184,11 @@ function pick<T, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
   });
   return result;
 }
+```
 
+---
+
+```typescript
 // 使用
 const user = {
   id: 1,
@@ -212,6 +226,8 @@ logLength([1, 2, 3]);   // ✅ 配列はlengthを持つ
 logLength(123);         // ❌ numberはlengthを持たない
 ```
 
+---
+
 ### <T extends { id: string }> → Tはidプロパティを持つべき
 
 ```typescript
@@ -222,7 +238,11 @@ function findById<T extends { id: string }>(
 ): T | undefined {
   return items.find(item => item.id === id);
 }
+```
 
+---
+
+```typescript
 // 使用
 interface User {
   id: string;
@@ -254,7 +274,11 @@ function max<T extends number | string>(a: T, b: T): T {
 max(1, 2);        // ✅
 max("a", "b");    // ✅
 max(1, "a");      // ❌ 同じ型でない
+```
 
+---
+
+```typescript
 // 特定のメソッドを持つ型に制限
 function sortBy<T extends { toString(): string }>(items: T[]): T[] {
   return [...items].sort((a, b) => 
@@ -285,6 +309,8 @@ const key2: UserKeys = "name";   // ✅
 const key3: UserKeys = "phone";  // ❌ エラー
 ```
 
+---
+
 ### 「オブジェクトのキーを型として取り出す」
 
 ```typescript
@@ -292,7 +318,11 @@ const key3: UserKeys = "phone";  // ❌ エラー
 function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
   return obj[key];
 }
+```
 
+---
+
+```typescript
 const user: User = {
   id: "1",
   name: "Alice",
@@ -320,6 +350,8 @@ type UserIdType = User["id"];       // string型
 type UserBasicTypes = User["name" | "age"];
 // string | number
 ```
+
+---
 
 ## Utility Types — TSが標準で提供する型ツール
 
@@ -357,7 +389,11 @@ type PartialUser = Partial<User>;
 //   name?: string;
 //   email?: string;
 // }
+```
 
+---
+
+```typescript
 // 使用例: フォームの入力値
 function updateUser(id: string, data: Partial<User>) {
   // 部分的な更新が可能
@@ -366,6 +402,8 @@ function updateUser(id: string, data: Partial<User>) {
 updateUser("1", { name: "New Name" });           // ✅
 updateUser("1", { email: "new@example.com" });   // ✅
 ```
+
+---
 
 ### Required<T>: 全プロパティを必須に
 
@@ -382,7 +420,11 @@ type RequiredConfig = Required<Config>;
 //   timeout: number;
 //   retries: number;
 // }
+```
 
+---
+
+```typescript
 // デフォルト値をマージした後の型
 function createConfig(partial: Partial<Config>): Required<Config> {
   return {
@@ -412,6 +454,8 @@ type ReadonlyUser = Readonly<User>;
 const user: ReadonlyUser = { id: "1", name: "Alice" };
 user.name = "Bob";  // ❌ エラー: Cannot assign to 'name' because it is a read-only property
 ```
+
+---
 
 ### Pick<T, K>: 特定のプロパティだけ取り出す
 
@@ -451,6 +495,8 @@ function toPublicUser(user: User): PublicUser {
 }
 ```
 
+---
+
 ### Record<K, V>: キーと値の型を指定したオブジェクト型
 
 ```typescript
@@ -461,7 +507,11 @@ const prices: Prices = {
   banana: 80,
   orange: 120
 };
+```
 
+---
+
+```typescript
 // キーをリテラル型に制限
 type Fruit = "apple" | "banana" | "orange";
 type FruitPrices = Record<Fruit, number>;
@@ -477,6 +527,12 @@ const fruitPrices: FruitPrices = {
 ---
 
 ## 関数から型を取り出すUtility Types
+
+- `ReturnType<typeof fn>` → 戻り値の型
+- `Parameters<typeof fn>` → 引数の型（タプル）
+- `Awaited<T>` → Promiseを剥がした型
+
+---
 
 ### ReturnType<typeof fn>: 関数の戻り値の型
 
@@ -495,10 +551,18 @@ type FetchUserReturn = ReturnType<typeof fetchUser>;
 //   name: string;
 //   email: string;
 // }
+```
 
-// 使用例: キャッシュの型
+---
+
+### ReturnType の使用例
+
+```typescript
+// キャッシュの型
 type UserCache = Map<string, ReturnType<typeof fetchUser>>;
 ```
+
+---
 
 ### Parameters<typeof fn>: 関数の引数の型（タプル）
 
@@ -509,8 +573,14 @@ function createUser(name: string, email: string, age: number) {
 
 type CreateUserParams = Parameters<typeof createUser>;
 // [string, string, number]
+```
 
-// 使用例: イベントハンドラーの型
+---
+
+### Parameters の使用例
+
+```typescript
+// イベントハンドラーの型
 type HandlerParams = Parameters<typeof createUser>;
 const handleCreate = (...args: HandlerParams) => {
   const [name, email, age] = args;
@@ -530,11 +600,19 @@ async function fetchUser(): Promise<User> {
 
 type FetchedUser = Awaited<ReturnType<typeof fetchUser>>;
 // User型（Promiseが剥がされる）
+```
 
+---
+
+### Awaited の高度な例
+
+```typescript
 // ネストしたPromiseも対応
 type DeepPromise = Promise<Promise<string>>;
 type Unwrapped = Awaited<DeepPromise>;  // string
 ```
+
+---
 
 ## Exclude / Extract / NonNullable
 
@@ -549,6 +627,8 @@ type FinalStatus = Exclude<Status, "loading">;
 type CompletedStatus = Exclude<Status, "loading" | "cancelled">;
 // "success" | "error"
 ```
+
+---
 
 ### Extract<T, U>: TとUの共通型
 
@@ -577,6 +657,8 @@ const users: (User | null)[] = [user1, null, user2, null, user3];
 const validUsers: User[] = users.filter(Boolean) as NonNullable<typeof users[number]>[];
 ```
 
+---
+
 ## ハンズオン：Genericsを使って型安全なユーティリティ関数を作る
 
 ### generic な fetch wrapper を実装する
@@ -590,7 +672,11 @@ async function fetchJson<T>(url: string): Promise<T> {
   }
   return response.json() as Promise<T>;
 }
+```
 
+---
+
+```typescript
 // 使用
 interface User {
   id: string;
@@ -625,7 +711,11 @@ type UserResponse = Omit<User, "password" | "createdAt">;
 
 // 2. フォーム入力用（ID不要、全てoptional）
 type UserFormInput = Partial<Omit<User, "id" | "createdAt">>;
+```
 
+---
+
+```typescript
 // 3. 更新用（ID必須、他はoptional）
 type UserUpdateInput = Partial<Omit<User, "createdAt">> & Pick<User, "id">;
 
@@ -635,22 +725,30 @@ type ReadonlyUser = Readonly<Pick<User, "id" | "name" | "email">>;
 
 ---
 
-## まとめ・次回予告
+## まとめ（1/2）
 
-### 今日学んだこと
+### Generics の基本
 
 1. ✅ 「型のコピペ」問題をGenericsで解決
-2. ✅ <T>は型の変数（プレースホルダー）
+2. ✅ `<T>` は型の変数（プレースホルダー）
 3. ✅ Generic関数で型安全な再利用
-4. ✅ extendsで型に制約をつける
-5. ✅ keyofでオブジェクトのキーを型として取得
-6. ✅ Utility Typesで型変換を簡潔に
-   - Partial, Required, Readonly
-   - Pick, Omit, Record
-   - ReturnType, Parameters, Awaited
-   - Exclude, Extract, NonNullable
+4. ✅ `extends` で型に制約をつける
+5. ✅ `keyof` でオブジェクトのキーを型として取得
 
-### 次回予告: T-6
+---
+
+## まとめ（2/2）
+
+### Utility Types で型変換を簡潔に
+
+- **Partial, Required, Readonly** — プロパティの修飾
+- **Pick, Omit, Record** — プロパティの選択・除外・定義
+- **ReturnType, Parameters, Awaited** — 関数・Promiseから型を取得
+- **Exclude, Extract, NonNullable** — ユニオン型の操作
+
+---
+
+## 次回予告: T-6
 
 **「モジュール・名前空間・型定義ファイル」**
 
