@@ -91,17 +91,19 @@ li::marker {
     Code Blocks
     ============================================ */
 
-pre {
+section pre {
   background: var(--color-code-bg);
   border: 1px solid var(--color-border);
   border-radius: 12px;
   padding: 24px;
   margin: 20px 0;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Courier New', monospace !important;
+  line-height: 1.5;
 }
 
 code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, monospace;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Monaco, 'Courier New', monospace !important;
   font-size: 20px;
   line-height: 1.5;
   color: var(--color-text);
@@ -160,12 +162,31 @@ code {
 .hljs-selector-class,
 .hljs-regexp,
 .hljs-deletion {
-  color: #ffd700;
+  color: #ffea00 !important;
 }
 
 /* Template literal substitutions like ${name} */
 .hljs-subst {
-  color: #ffd700;
+  color: #ffea00;
+}
+
+/* Function parameters */
+.hljs-params {
+  color: #ffea00 !important;
+}
+
+/* Override default Marp theme's dark blue colors for variables/params */
+section pre code .hljs-attr,
+section pre code .hljs-attribute,
+section pre code .hljs-params,
+section pre code .hljs-variable,
+section pre code .hljs-template-variable,
+section pre code .hljs-selector-id,
+section pre code .hljs-selector-class,
+section pre code .hljs-regexp,
+section pre code .hljs-deletion,
+section pre code .hljs-subst {
+  color: #ffea00 !important;
 }
 
 /* Functions, methods - purple */
